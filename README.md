@@ -12,3 +12,9 @@ En la carpeta se encuentran:
 - Fotos del proyecto para la redaccion de informe, estan viejas se van a actualizar mas adelante.
 - Librerias de arduino eagle y diseño de eagle, era opcional para diseñar/mostrar el conexionado esquematico de todo el proyecto.
 - Programa que se utilizaron donde estara puesta a punto que es el que se utiliza para probar motores, sensores y lecturas. La versio mas nueva del programa es Sistema_SCADA. Deben de abrir el .ino con el mismo nombre y les abrira el proyecto completo.
+
+![Logo de GitHub](https://github.com/equipoPI/IC1/blob/main/Proyecto/Fotos%20del%20proyecto/IMG-20230318-WA0009.jpg)
+
+<p align="center">
+  <img src="https://github.com/equipoPI/IC1/blob/main/Proyecto/Fotos%20del%20proyecto/Diagrama%201.png" alt="Descripción de la imagen" />
+</p>
