@@ -1,6 +1,4 @@
- <p align="center">
-  <strong><em>IC3</em></strong>
-</p>
+# **_IC3_**
 
 # Referencias/Archivos .aia
 En el apartado a referencias existen archivos con extenciones .aia que tomamos como consulta para el desarrollo de la aplicacion para celular.
