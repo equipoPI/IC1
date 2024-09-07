@@ -1,4 +1,7 @@
-# IC1
+<p align="center">
+ # ***IC1***
+</p>
+
 # Referencias/Archivos .aia
 En el apartado a referencias existen archivos con extenciones .aia que tomamos como consulta para el desarrollo de la aplicacion para celular.
 
