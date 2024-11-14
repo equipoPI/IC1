@@ -25,6 +25,11 @@ cantidad1 y cantidad2
 // De BT/app a ==> Arduino
 
 /*
+ R === Reposicion, valor convinacion, si es 1000 es el bombo 1 y si es 2000 es el bombo , del 1 al 100 es el limite 
+ F === Para la reposicion
+ D === Detiene la Mezcla, activarMezcla=0;
+ V === vaviar = 1;
+ A === continuar, se pone activarMezcla 1
  maximoReposicion === convinacion
  HoraTransmitida === HoraTotal
  Liquido1Definido === Ingrediente1

@@ -10,7 +10,7 @@ void frenadoReposicion() {
   digitalWrite(8, HIGH); //in 4 electrovalvula a Bombo 2
 }
 
-void activacion() {
+void llamadaRepo() {
   if (convinacion >= 1000 and convinacion <= 1100) {
     bomboSeleccionado = 1;
     valorMaxReposicion = convinacion - 1000;
@@ -73,19 +73,38 @@ void activacion() {
       }
     }
   }
-  /* byte EMezclador = false;
-    byte EBomba1 = false;
-    byte EBomba2 = false;
-    byte EValvula1 = false;
-    byte EValvula2 = false;*/
+}
+/* byte EMezclador = false;
+  byte EBomba1 = false;
+  byte EBomba2 = false;
+  byte EValvula1 = false;
+  byte EValvula2 = false;*/
 
-
+void llamadaProduccion() {
   TiempoHorUso = TiempoHor * 3600000;
   TiempoMinUso = TiempoMin * 60000;
 
   liquido1 = (Ingrediente1 - 10000) / 1000;
   liquido2 = (Ingrediente2 - 20000) / 1000;
 
+  if (desechar == 1) {
+    //prender bomba del bombo de mezcla
+    digitalWrite(4, LOW);  //in 4, bomba deposito m
+    EBombaM = 1;
+    liquido1 = 0;
+    cantidad1 = 0;
+    liquido2 = 0;
+    cantidad2 = 0;
+    Ingrediente1=0;
+    Ingrediente2=0;
+  }
+
+  if (constrainedPorcentaje3 < 15) {
+    digitalWrite(4, HIGH);  //in 4, bomba deposito m
+    vaciar = 0;
+    EBombaM = 0;
+    desechar = 0;
+  }
 
   if (continuar == 1) {
     //inicio de transferencia de contenido de bombos 1 y 2 al bombo de mezcla
@@ -121,40 +140,67 @@ void activacion() {
     }
 
     if (terminoLlenadoLiquido1 == 1 and terminoLlenadoLiquido2 == 1) {
-      activarMezcla == 1;
-      terminoLlenadoLiquido1 = 0;
-      terminoLlenadoLiquido2 = 0;
+      activarMezcla = 1;
       liquido1 = 0;
       liquido2 = 0;
+      Ingrediente1 = 0;
+      Ingrediente2 = 0;
       TInicioMezclado = millis();
+      currentMillis = millis();
+      terminoLlenadoLiquido1 = 0;
+      terminoLlenadoLiquido2 = 0;
     }
   }
 
   if (activarMezcla == 1) {
-    unsigned long currentMillis = millis(); // Tiempo actual
+    currentMillis = millis();
+    Serial.println(activarMezcla);
     EProceso = 1;
 
-    // Encender el motor por 5 segundos
-    if ((currentMillis - previousMillis) >= TiempoMotorOn and MotorOn == 1) {
+    // Encender el motor por 3 segundos
+    if ((currentMillis - previousMillis) >= TiempoMotorOn and MotorOn == 1 ) {
       //apagar el motor
-      digitalWrite(7, HIGH);  //in 1 , mezclador
+      //digitalWrite(7, HIGH);  //in 1 , mezclador
+      digitalWrite(13, LOW); //no c utiliza
       previousMillis = currentMillis;
       MotorOn = 0;
       MotorOff = 1;
+      Serial.print("Prendiendo");
     }
-
-    // Apagar el motor por 2 segundos
-    if ((currentMillis - previousMillis) >= TiempoMotorOff and MotorOff == 1) {
+    
+    Serial.print("Intermedio");
+    
+    // Apagar el motor por 5 segundos
+    if ((currentMillis - previousMillis) >= TiempoMotorOff and MotorOff ) {
       //encender motor
-      digitalWrite(7, LOW);  //in 1 , mezclador
+      //digitalWrite(7, LOW);  //in 1 , mezclador
+      digitalWrite(13, HIGH); //no c utiliza
       previousMillis = currentMillis;
       MotorOn = 1;
       MotorOff = 0;
+      Serial.print("Apagando");
     }
-    //motor de mezclador
+
+    //    if ((activarMezcla == 0 and continuar == 0)) {
+    //      EProceso = 0;
+    //      //apagar motor de mezclador
+    //      digitalWrite(7, HIGH);  //in 1 , mezclador
+    //
+    //      //apagado bomba Bombo1
+    //      digitalWrite(5, HIGH);  //in 3, bomba deposito 1
+    //      EBomba1 = 0;
+    //
+    //      //apagado bomba Bombo2
+    //      digitalWrite(6, HIGH);   //in 2, bomba deposito 2
+    //      EBomba2 = 0;
+    //      desechar = 0;
+    //      detener = 0;
+    //      digitalWrite(4, HIGH);  //in 4, bomba deposito m
+    //    }
+
   }
 
-  if ((activarMezcla == 0 and continuar == 0) or detener == 1) {
+  if (detener == 1) {
     EProceso = 0;
     //apagar motor de mezclador
     digitalWrite(7, HIGH);  //in 1 , mezclador
@@ -169,16 +215,6 @@ void activacion() {
     desechar = 0;
     detener = 0;
     digitalWrite(4, HIGH);  //in 4, bomba deposito m
-  }
-
-  if (desechar == 1) {
-    //prender bomba del bombo de mezcla
-    digitalWrite(4, LOW);  //in 4, bomba deposito m
-    EBombaM = 1;
-    liquido1 = 0;
-    cantidad1 = 0;
-    liquido2 = 0;
-    cantidad2 = 0;
   }
 
   if (vaciar == 1) {
@@ -210,16 +246,14 @@ void activacion() {
     }
   }
 
-  if (constrainedPorcentaje3 < 15) {
-    digitalWrite(4, HIGH);  //in 4, bomba deposito m
-    vaciar = 0;
-    EBombaM = 0;
-    desechar = 0;
-  }
-
   if (activarMezcla == 1) {
     horaRest = ((TInicioMezclado + TiempoMin + TiempoHor) - millis()) / 3600000;
     minRest = ((TInicioMezclado + TiempoMin + TiempoHor) - millis()) / 60000;
+
+    Serial.print("horaRest:");
+    Serial.print(horaRest);
+    Serial.print("  minRest:");
+    Serial.println(minRest);
 
     if ((TInicioMezclado + TiempoMin + TiempoHor) < millis()) {
       liquido1 = 0;
@@ -228,9 +262,9 @@ void activacion() {
       cantidad2 = 0;
       activarMezcla == 0;
       EProceso = 2;
-      terminoLlenadoLiquido1=0;
-      terminoLlenadoLiquido2=0;
-      arranque2=0;
+      terminoLlenadoLiquido1 = 0;
+      terminoLlenadoLiquido2 = 0;
+      arranque2 = 0;
     }
   }
 }

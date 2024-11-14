@@ -30,7 +30,7 @@ void lectura() {
       obtencionEntero();     //Llama la función que controla el valor a guradar el valor
     }
 
-    if (valor == 'C') {  //Si el dato entrante es una C indica el valor de Ingrediente1 y comenzar
+    if (valor == 'C') {  //Si el dato entrante es una C indica el valor de Ingrediente y comenzar
       g = 5;
       obtencionEntero();     //Llama la función que controla el valor a guradar el valor
       continuar = 1;
@@ -75,7 +75,7 @@ void lectura() {
       obtencionEntero();     //Llama la función que controla el valor a guradar
     }
 
-    if (valor == 'X') {  //Si el dato entrante es una H indica que le esta llegando un valor a referencia de minutos
+    if (valor == 'X') {  //Si el dato entrante es una X indica que le esta llegando un valor a referencia de minutos
       desechar = 1;   //Llama la función que controla el valor a guradar
     }
   }

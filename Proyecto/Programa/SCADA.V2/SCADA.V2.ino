@@ -15,7 +15,8 @@ unsigned long tiempoMonitoreo = 0;
 unsigned long TInicioMezclado = 0;
 unsigned long previousMillis = 0;
 unsigned long TiempoMotorOn = 5000;
-unsigned long TiempoMotorOff = 2000;
+unsigned long TiempoMotorOff = 3000;
+unsigned long currentMillis = 0; // Tiempo actual
 
 //variables control de transmicion bluetooth
 int g = 0;
@@ -191,13 +192,13 @@ void loop() {
 
   //comunicacion para controlar el llenado y la mezcla
   //control de bomba a reposicoin de bombos
-  activacion();
+  llamadaRepo();
 
-  //control de bombas a bombo de mezcla
+  //control de bombas a bombo de mezcla y mezclador
+  llamadaProduccion();
 
   //control de caudal
   caudal();
 
-  //sistema de mezclado
-
+  
 }

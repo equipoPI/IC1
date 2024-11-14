@@ -35,23 +35,24 @@ void monitoreo() {
     Serial.print(porcentajeReal2);
     Serial.print("  Porcentaje3R:");
     Serial.println(porcentajeReal3);*/
-  Serial.println(valor);
-  Serial.print("TiempoHor:");
-  Serial.print( TiempoHor);
-  Serial.print("  TiempoMin:");
-  Serial.println( TiempoMin);
-  Serial.print("Cantidad1:");
-  Serial.print( cantidad1);
-  Serial.print("  Cantidad2:");
-  Serial.println( cantidad2);
-  Serial.print("activarMezcla:");
-  Serial.print( activarMezcla);
-  Serial.print("  terminoLlenadoLiquido1:");
-  Serial.print( terminoLlenadoLiquido1);
-  Serial.print("  terminoLlenadoLiquido2:");
-  Serial.println( terminoLlenadoLiquido2);
-  Serial.print(" arranque2:");
-  Serial.println(arranque2);
-  
-
+        
+//  Serial.println(constrainedPorcentaje3);
+//  Serial.println(valor);
+//  Serial.print("TiempoHor:");
+//  Serial.print( TiempoHor);
+//  Serial.print("  TiempoMin:");
+//  Serial.println( TiempoMin);
+//  Serial.print("Cantidad1:");
+//  Serial.print( cantidad1);
+//  Serial.print("  Cantidad2:");
+//  Serial.println( cantidad2);
+//  Serial.print("activarMezcla:");
+//  Serial.print( activarMezcla);
+//  Serial.print("  terminoLlenadoLiquido1:");
+//  Serial.print( terminoLlenadoLiquido1);
+//  Serial.print("  terminoLlenadoLiquido2:");
+//  Serial.println( terminoLlenadoLiquido2);
+//  Serial.print(" arranque2:");
+//  Serial.println(arranque2);
+//  
 }
