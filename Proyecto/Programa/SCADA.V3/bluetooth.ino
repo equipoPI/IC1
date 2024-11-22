@@ -1,10 +1,7 @@
-//esta funciones hay que actualizarlas porque daran error si se ejecutan de esta forma, se tomaro de ejemplo de un codigo
-//el codigo es CodControl del TP3 de comunicacion de datos de 4 año de ing en comp
 
 void lectura() {
   if (BT.available()) { //Si el puerto serie (Bluetooth) está disponible
     valor = BT.read();  //Lee el dato entrante via Bluetooth
-
 
     if (valor == 'F') { //Si el dato entrante es una F, se para la reposicion
       g = 1;
@@ -33,13 +30,13 @@ void lectura() {
     if (valor == 'C') {  //Si el dato entrante es una C indica el valor de Ingrediente y comenzar
       g = 5;
       obtencionEntero();     //Llama la función que controla el valor a guradar el valor
-      continuar = 1;
+      
     }
 
     if (valor == 'c') {  //Si el dato entrante es una c indica el valor de Ingrediente2 y comenzar
       g = 6;
       obtencionEntero();     //Llama la función que controla el valor a guradar el valor
-      continuar = 1;
+      empezar = 1;
     }
 
     if (valor == 'V') {  //Si el dato entrante es una V, llega una señal de vaciar o de desechar. Activa la bomba del Bombo de Mezcla
@@ -50,9 +47,7 @@ void lectura() {
 
     if (valor == 'D') {  //Si el dato entrante es una D se detiene el proceso de mezclado
       g = 8;
-      activarMezcla = 0;
-      continuar = 0;
-      detener = 1;
+      parar = 1;
     }
 
     if (valor == 'A') {  //Si el dato entrante es una A se continua el mezclado
@@ -79,6 +74,8 @@ void lectura() {
     if (valor == 'X') {  //Si el dato entrante es una X indica que le esta llegando un valor a referencia de minutos
       desechar = 1;   //Llama la función que controla el valor a guradar
     }
+        Serial.print("Llega:");
+    Serial.println(valor);
   }
 }
 
@@ -113,18 +110,16 @@ void obtencionEntero() {
     }
 
     if (g == 11) {
-      TiempoHor = estado.toInt();
+      duracion_horas = estado.toInt();
     }
 
     if (g == 12) {
-      TiempoMin = estado.toInt();
+      duracion_minutos = estado.toInt();
     }
+
 
     g = 0;            //vuelve la variable g a 0
     estado = "";      //Limpia la variable para poder leer posteriormente nuevos datos
-
-    Serial.print("valor recivido:");
-    Serial.println(TiempoHor);
 
   }
 }
@@ -133,9 +128,9 @@ void enviarValores() {
   if (flagTransmicion == 1) {
     // Enviar los valores leidos a la aplicación a través de Bluetooth
     // Se ejecuta cada vez que se recibe el caracter que indica una nueva conexion ('E')
-    //La transmicion se realiza de esta forma ya que la aplicacion android lo recibira todo como texto y utilizara
+    // La transmicion se realiza de esta forma ya que la aplicacion android lo recibira todo como texto y utilizara
     // | para delimitar cada valor y asignare a cada uno una posicion en una lista que podra ser interpretada como numero
-    //eso no ayudara para mostrar o visualizar todos los datos que queramos
+    // eso no ayudara para mostrar o visualizar todos los datos que queramos
     BT.print(average1);                     //BT.print(porcentajeReal1);
     BT.print("|");
     BT.print(constrainedPorcentaje1);         //BT.print(porcentajeReal1);
@@ -148,9 +143,9 @@ void enviarValores() {
     BT.print("|");
     BT.print(constrainedPorcentaje3);         //BT.print(porcentajeReal3);
     BT.print("|");
-    BT.print(cantidad1);
+    BT.print(nivel_liquido_1);
     BT.print("|");
-    BT.print(cantidad2);
+    BT.print(nivel_liquido_2);
     BT.print("|");
     BT.print(EBomba1);
     BT.print("|");
@@ -164,15 +159,17 @@ void enviarValores() {
     BT.print("|");
     BT.print(error);
     BT.print("|");
-    BT.print(horaRest);
+    BT.print(horas_restantes);
     BT.print("|");
-    BT.print(minRest);
+    BT.print(minutos_restantes);
     BT.print("|");
     BT.print(EProceso);
     BT.print("|");
     BT.print(EBomboM);
+    BT.print("|");
+    BT.print(segundos_restantes);
     BT.print("\n"); // Fin de línea. Importante.
     // t = t + 1;
-    //flagTransmicion = 0;
+    // flagTransmicion = 0;
   }
 }
