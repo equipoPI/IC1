@@ -5502,6 +5502,10 @@ Source: http://eshop.phoenixcontact.de .. 1733415.pdf</description>
 <part name="X12" library="con-phoenix-smkdsp" deviceset="SMKDSP_1,5/2" device=""/>
 <part name="R9" library="resistor" deviceset="R-EU_" device="0207/10"/>
 <part name="X13" library="con-phoenix-smkdsp" deviceset="SMKDSP_1,5/2" device=""/>
+<part name="R10" library="resistor" deviceset="R-EU_" device="0207/10"/>
+<part name="Q5" library="transistor-npn" deviceset="2N3565" device=""/>
+<part name="R11" library="resistor" deviceset="R-EU_" device="0207/10"/>
+<part name="X14" library="con-phoenix-smkdsp" deviceset="SMKDSP_1,5/2" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -5562,6 +5566,11 @@ Source: http://eshop.phoenixcontact.de .. 1733415.pdf</description>
 <instance part="R9" gate="G$1" x="261.62" y="-10.16"/>
 <instance part="X13" gate="-1" x="144.78" y="119.38" rot="R270"/>
 <instance part="X13" gate="-2" x="139.7" y="119.38" rot="R270"/>
+<instance part="R10" gate="G$1" x="429.26" y="48.26"/>
+<instance part="Q5" gate="G$1" x="439.42" y="48.26"/>
+<instance part="R11" gate="G$1" x="441.96" y="35.56" rot="R270"/>
+<instance part="X14" gate="-1" x="447.04" y="58.42" rot="R180"/>
+<instance part="X14" gate="-2" x="447.04" y="63.5" rot="R180"/>
 </instances>
 <busses>
 </busses>
@@ -5830,6 +5839,10 @@ Source: http://eshop.phoenixcontact.de .. 1733415.pdf</description>
 <wire x1="266.7" y1="68.58" x2="309.88" y2="68.58" width="0.1524" layer="91"/>
 <pinref part="X1" gate="-2" pin="KL"/>
 <wire x1="266.7" y1="63.5" x2="266.7" y2="68.58" width="0.1524" layer="91"/>
+<pinref part="X14" gate="-2" pin="KL"/>
+<wire x1="403.86" y1="68.58" x2="441.96" y2="68.58" width="0.1524" layer="91"/>
+<wire x1="441.96" y1="68.58" x2="441.96" y2="63.5" width="0.1524" layer="91"/>
+<junction x="403.86" y="68.58"/>
 </segment>
 </net>
 <net name="N$23" class="0">
@@ -5881,8 +5894,44 @@ Source: http://eshop.phoenixcontact.de .. 1733415.pdf</description>
 <wire x1="175.26" y1="66.04" x2="132.08" y2="66.04" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$34" class="0">
+<net name="N$29" class="0">
 <segment>
+<pinref part="R10" gate="G$1" pin="2"/>
+<pinref part="Q5" gate="G$1" pin="B"/>
+<wire x1="434.34" y1="48.26" x2="436.88" y2="48.26" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$35" class="0">
+<segment>
+<pinref part="Q5" gate="G$1" pin="E"/>
+<pinref part="R11" gate="G$1" pin="1"/>
+<wire x1="441.96" y1="43.18" x2="441.96" y2="40.64" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$36" class="0">
+<segment>
+<pinref part="X14" gate="-1" pin="KL"/>
+<pinref part="Q5" gate="G$1" pin="C"/>
+<wire x1="441.96" y1="58.42" x2="441.96" y2="53.34" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$37" class="0">
+<segment>
+<pinref part="R10" gate="G$1" pin="1"/>
+<wire x1="424.18" y1="48.26" x2="419.1" y2="48.26" width="0.1524" layer="91"/>
+<wire x1="419.1" y1="48.26" x2="419.1" y2="10.16" width="0.1524" layer="91"/>
+<wire x1="419.1" y1="10.16" x2="254" y2="10.16" width="0.1524" layer="91"/>
+<wire x1="254" y1="10.16" x2="254" y2="35.56" width="0.1524" layer="91"/>
+<wire x1="254" y1="35.56" x2="154.94" y2="35.56" width="0.1524" layer="91"/>
+<wire x1="154.94" y1="35.56" x2="154.94" y2="43.18" width="0.1524" layer="91"/>
+<pinref part="PCB1" gate="G$1" pin="17(RX2)"/>
+<wire x1="154.94" y1="43.18" x2="132.08" y2="43.18" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$39" class="0">
+<segment>
+<pinref part="R11" gate="G$1" pin="2"/>
+<wire x1="441.96" y1="27.94" x2="441.96" y2="30.48" width="0.1524" layer="91"/>
 <pinref part="X7" gate="-1" pin="KL"/>
 <wire x1="332.74" y1="114.3" x2="332.74" y2="106.68" width="0.1524" layer="91"/>
 <junction x="332.74" y="106.68"/>
@@ -5941,6 +5990,8 @@ Source: http://eshop.phoenixcontact.de .. 1733415.pdf</description>
 <junction x="190.5" y="-5.08"/>
 <wire x1="414.02" y1="27.94" x2="403.86" y2="27.94" width="0.1524" layer="91"/>
 <junction x="403.86" y="27.94"/>
+<wire x1="441.96" y1="27.94" x2="414.02" y2="27.94" width="0.1524" layer="91"/>
+<junction x="414.02" y="27.94"/>
 </segment>
 </net>
 </nets>

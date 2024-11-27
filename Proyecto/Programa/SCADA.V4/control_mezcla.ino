@@ -22,13 +22,13 @@ void llamadaProduccion() {
     duracion_minutos = 0;
   }
 
-    if (constrainedPorcentaje3 < 10) { //frena la bomba del bombo de mezcla cuando se detecta que sa vacio  el bombo
-      digitalWrite(4, HIGH);           // bomba del deposito de mezcla
-      vaciar = 0;
-      EBombaM = 0;
-      desechar = 0;
-      EProceso = 0;
-    }
+  if (constrainedPorcentaje3 < 10) { //frena la bomba del bombo de mezcla cuando se detecta que sa vacio  el bombo
+    digitalWrite(4, HIGH);           // bomba del deposito de mezcla
+    vaciar = 0;
+    EBombaM = 0;
+    desechar = 0;
+    EProceso = 0;
+  }
 
   // Control del llenado de líquidos
   if (empezar == 1) {
@@ -69,18 +69,20 @@ void llamadaProduccion() {
 
   //Si se solicita pausar
   if (parar == 1) {
-    //para las bombas 
+    //para las bombas
     mezcla_en_progreso = false;
     digitalWrite(4, HIGH);
     digitalWrite(5, HIGH);
     digitalWrite(6, HIGH);
+    digitalWrite(7, HIGH);
     tiempo_pausado += millis() - tiempo_inicio;
     Serial.println("Proceso pausado");
-    
+
     // Reiniciar variable de control
-    parar = 0; 
+    parar = 0;
     desechar = 0;
     vaciar = 0;
+    EMezclador = 0;
     EProceso = 3;
   }
 
@@ -114,12 +116,12 @@ void llamadaProduccion() {
 
     // Ciclo del motor (5 segundos encendido, 2 segundos apagado)
     if (tiempo_transcurrido % 7000 < 5000) {
-      digitalWrite(13, LOW);
+      digitalWrite(7, LOW);
       Serial.println("Motor encendido");
       EMezclador = 1;
       EProceso = 1;
     } else {
-      digitalWrite(13, HIGH);
+      digitalWrite(7, HIGH);
       Serial.println("Motor apagado");
       EMezclador = 0;
       EProceso = 1;
@@ -127,6 +129,7 @@ void llamadaProduccion() {
 
     // Finalizar mezcla cuando el tiempo se acabe
     if (tiempo_restante <= 0) {
+      digitalWrite(7, HIGH);
       mezcla_en_progreso = false;
       Serial.println("Mezcla finalizada. Esperando vaciado.");
       EProceso = 2;
@@ -139,5 +142,14 @@ void llamadaProduccion() {
     Serial.println("Pin de vaciado activado.");
     vaciar = 0; // Reiniciar variable de control
     EProceso = 4;
+    liquido1 = 0;
+    nivel_liquido_1 = 0;
+    liquido2 = 0;
+    nivel_liquido_2 = 0;
+    Ingrediente1 = 0;
+    Ingrediente2 = 0;
+    duracion_total_ms = 0;
+    duracion_horas = 0;
+    duracion_minutos = 0;
   }
 }

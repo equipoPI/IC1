@@ -1,14 +1,14 @@
 void pulse1()   //medir la cantidad de flujo de agua del caudalimetro 1
 {
   if (terminoLlenadoLiquido1 == 0) {
-    waterFlow1 += 1.0 / 450;        //450 es el valor para el caudalimetro de 1/2 pulgada, nosotros tenemos 1/4 pulgada
+    waterFlow1 += 1.0 / 550;        //450 es el valor para el caudalimetro de 1/2 pulgada, nosotros tenemos 1/4 pulgada
   }                                 // y su valor es 5880
 }
 
 void pulse2()   //medir la cantidad de flujo de agua del caudalimetro 2
 {
   if (terminoLlenadoLiquido1 == 1) {
-    waterFlow2 += 1.0 / 450;        //450 es el valor para el caudalimetro de 1/2 pulgada, nosotros tenemos 1/4 pulgada
+    waterFlow2 += 1.0 / 550;        //450 es el valor para el caudalimetro de 1/2 pulgada, nosotros tenemos 1/4 pulgada
   }                                 // y su valor es 5880
 }
 

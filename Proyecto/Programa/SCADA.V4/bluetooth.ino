@@ -1,6 +1,6 @@
 //en esta funcion se utiliza para leer que es lo que llega desde la aplicacion del celular
 void lectura() {
-  
+
   if (BT.available()) {      //Si el puerto serie (Bluetooth) está disponible
     valor = BT.read();       //Lee el dato entrante via Bluetooth
 
@@ -71,7 +71,7 @@ void lectura() {
     if (valor == 'X') {      //Si el dato entrante es una X indica que le esta llegando una orden de desechar
       desechar = 1;          //la variable encargada de controlar el desecho del contenido del bombo de mezcla
     }
-        Serial.print("Llega:"); //control de lo que llega
+    Serial.print("Llega:"); //control de lo que llega
     Serial.println(valor);
   }
 }
@@ -86,11 +86,11 @@ void obtencionEntero() {
   if (estado.length() > 0) {           //Se verifica que la cadena tipo String tenga un largo mayor a cero
 
     if (g == 1) {                      //dependiendo del valor de g
-                                       //Guarda en un registro el dato en forma de entero (int)
+      //Guarda en un registro el dato en forma de entero (int)
     }
 
     if (g == 2) {
-      convinacion = estado.toInt();    //guarda el valor que se usara para saber hasta donde llenar los bombo 1 y 2
+      combinacion = estado.toInt();    //guarda el valor que se usara para saber hasta donde llenar los bombo 1 y 2
     }
 
     if (g == 3) {

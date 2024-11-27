@@ -66,7 +66,7 @@ String estado;
 byte flagTransmicion = 1;
 
 // Variables de recepción Bluetooth
-int convinacion = 0;               // Número que indicará la cantidad a reponer + bombo
+int combinacion = 0;               // Número que indicará la cantidad a reponer + bombo
 int bomboSeleccionado = 0;
 int valorMaxReposicion = 0;
 byte activarMezcla = 0;
@@ -186,8 +186,11 @@ void setup() {
   waterFlow1 = 0;
   waterFlow2 = 0;
 
-  attachInterrupt(digitalPinToInterrupt(2), pulse1, RISING);  //DIGITAL Pin 2: interrupcion externa con la llegada de un pulso del caudalimetro
-  attachInterrupt(digitalPinToInterrupt(3), pulse2, RISING);  //DIGITAL Pin 3: interrupcion externa con la llegada de un pulso del caudalimetro
+//  attachInterrupt(digitalPinToInterrupt(2), pulse1, RISING);  //DIGITAL Pin 2: interrupcion externa con la llegada de un pulso del caudalimetro
+//  attachInterrupt(digitalPinToInterrupt(3), pulse2, RISING);  //DIGITAL Pin 3: interrupcion externa con la llegada de un pulso del caudalimetro
+
+  attachInterrupt(digitalPinToInterrupt(2), pulse1, FALLING);  //DIGITAL Pin 2: interrupcion externa con la llegada de un pulso del caudalimetro
+  attachInterrupt(digitalPinToInterrupt(3), pulse2, FALLING);  //DIGITAL Pin 3: interrupcion externa con la llegada de un pulso del caudalimetro
 
   //configuracion bluethooot
   BT.begin(9600);

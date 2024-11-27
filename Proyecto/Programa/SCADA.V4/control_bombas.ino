@@ -11,16 +11,15 @@ void frenadoReposicion() {
 }
 
 void llamadaRepo() {
-
   //se decodifica que bombo y cuanto se debe de reponer
-  if (convinacion >= 1000 and convinacion <= 1100) {
+  if (combinacion >= 1000 and combinacion <= 1100) {
     bomboSeleccionado = 1;
-    valorMaxReposicion = convinacion - 1000;
+    valorMaxReposicion = combinacion - 1000;
   }
 
-  if (convinacion >= 2000 and convinacion <= 2200) {
+  if (combinacion >= 2000 and combinacion <= 2200) {
     bomboSeleccionado = 2;
-    valorMaxReposicion = convinacion - 2000;
+    valorMaxReposicion = combinacion - 2000;
   }
 
   if (flagParadaR == 0) { //en el caso de que se presione parar por algun motivo se desactivan la siguientes
