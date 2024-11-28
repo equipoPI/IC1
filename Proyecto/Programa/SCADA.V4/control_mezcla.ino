@@ -22,11 +22,24 @@ void llamadaProduccion() {
     duracion_minutos = 0;
   }
 
-  if (constrainedPorcentaje3 < 10) { //frena la bomba del bombo de mezcla cuando se detecta que sa vacio  el bombo
+  if (constrainedPorcentaje3 < 15) { //frena la bomba del bombo de mezcla cuando se detecta que sa vacio  el bombo
     digitalWrite(4, HIGH);           // bomba del deposito de mezcla
     vaciar = 0;
     EBombaM = 0;
     desechar = 0;
+    EProceso = 0;
+    EBombaM = 1;
+    liquido1 = 0;
+    nivel_liquido_1 = 0;
+    liquido2 = 0;
+    nivel_liquido_2 = 0;
+    Ingrediente1 = 0;
+    Ingrediente2 = 0;
+    EProceso = 4;
+    mezcla_en_progreso = false;
+    duracion_total_ms = 0;
+    duracion_horas = 0;
+    duracion_minutos = 0;
     EProceso = 0;
   }
 
@@ -61,7 +74,7 @@ void llamadaProduccion() {
       tiempo_inicio = millis();
       tiempo_pausado = 0;
       Serial.println("Iniciando mezcla.");
-      terminoLlenadoLiquido1 = 0;
+      terminoLlenadoLiquido1 = 3;
       Ingrediente1 = 0;
       Ingrediente2 = 0 ;
     }
@@ -133,6 +146,7 @@ void llamadaProduccion() {
       mezcla_en_progreso = false;
       Serial.println("Mezcla finalizada. Esperando vaciado.");
       EProceso = 2;
+      terminoLlenadoLiquido1 = 0;
     }
   }
 
