@@ -1,4 +1,7 @@
 # **_IC3_**
+### Resumen:
+
+El proyecto presentado corresponde al diseño e implementación de un sistema SCADA (Supervisión, Control y Adquisición de Datos) aplicado a una planta automatizada de producción de jugos. Este sistema combina hardware y software para optimizar procesos industriales, utilizando componentes como Arduino Mega 2560, sensores ultrasónicos, caudalímetros, bombas, y módulos Bluetooth para comunicación inalámbrica con una aplicación móvil.
 
 # Proyecto
 Dentro de este se encuentran las versiones del los códigos de Arduino, los archivos APK para las aplicaciones de celular y archivos .aia que se pueden cargar en la plataforma de "MIT APP INVENTOR" para realizarle modificaciones. Las versiones finales son:
