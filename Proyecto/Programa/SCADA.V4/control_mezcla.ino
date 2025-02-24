@@ -22,31 +22,39 @@ void llamadaProduccion() {
     duracion_minutos = 0;
   }
 
-  if (constrainedPorcentaje3 < 15) { //frena la bomba del bombo de mezcla cuando se detecta que sa vacio  el bombo
-    digitalWrite(4, HIGH);           // bomba del deposito de mezcla
-    vaciar = 0;
-    EBombaM = 0;
-    desechar = 0;
-    EProceso = 0;
-    EBombaM = 1;
-    liquido1 = 0;
-    nivel_liquido_1 = 0;
-    liquido2 = 0;
-    nivel_liquido_2 = 0;
-    Ingrediente1 = 0;
-    Ingrediente2 = 0;
-    EProceso = 4;
-    mezcla_en_progreso = false;
-    duracion_total_ms = 0;
-    duracion_horas = 0;
-    duracion_minutos = 0;
-    EProceso = 0;
+  if (EProceso == 4 or EProceso == 2) {
+    if (constrainedPorcentaje3 < 15) { //frena la bomba del bombo de mezcla cuando se detecta que sa vacio  el bombo
+      digitalWrite(4, HIGH);           // bomba del deposito de mezcla
+      vaciar = 0;
+      EBombaM = 0;
+      desechar = 0;
+      EProceso = 0;
+      EBombaM = 1;
+      liquido1 = 0;
+      nivel_liquido_1 = 0;
+      liquido2 = 0;
+      nivel_liquido_2 = 0;
+      Ingrediente1 = 0;
+      Ingrediente2 = 0;
+      waterFlow1 = 0;
+      waterFlow2 = 0;
+      EProceso = 4;
+      mezcla_en_progreso = false;
+      duracion_total_ms = 0;
+      duracion_horas = 0;
+      duracion_minutos = 0;
+      EProceso = 0;
+      terminoLlenadoLiquido1 = 0;
+    }
   }
 
   // Control del llenado de líquidos
   if (empezar == 1) {
     // Llenar con líquido 1
-    if (nivel_liquido_1 <= liquido1 && bomba_1_encendida == false) {
+    if (nivel_liquido_1 == liquido1 && bomba_1_encendida == false) {
+      terminoLlenadoLiquido1 = 1;
+    }
+    if (nivel_liquido_1 < liquido1 && bomba_1_encendida == false) {
       digitalWrite(5, LOW);
       bomba_1_encendida = true;
       Serial.println("Bomba 1 encendida: llenando líquido 1");
@@ -58,7 +66,7 @@ void llamadaProduccion() {
     }
 
     // Llenar con líquido 2
-    if (nivel_liquido_2 <= liquido2 && bomba_2_encendida == false && bomba_1_encendida == false) {
+    if (nivel_liquido_2 < liquido2 && bomba_2_encendida == false && bomba_1_encendida == false) {
       digitalWrite(6, LOW);
       bomba_2_encendida = true;
       Serial.println("Bomba 2 encendida: llenando líquido 2");
